@@ -13,9 +13,11 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 
-# Загрузить .env из корня проекта
-BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / '.env')
+BASE_DIR = Path(__file__).resolve().parent.parent  # папка с manage.py (корень Django проекта)
+PROJECT_ROOT = BASE_DIR.parent                     # на уровень выше, где лежит .env
+
+load_dotenv(PROJECT_ROOT / '.env')
+
 
 POSTGRES_USER = os.getenv("POSTGRES_USER")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
@@ -66,7 +68,7 @@ ROOT_URLCONF = 'django_deploy_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
