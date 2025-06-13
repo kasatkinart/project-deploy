@@ -17,6 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# urls.py
+from django.urls import path
+from contractors.views import contractor_list
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("contractors/", contractor_list, name="contractor_list"),
 ]
+

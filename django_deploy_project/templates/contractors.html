@@ -1,0 +1,72 @@
+<!-- templates/contractors.html -->
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9faff;
+    color: #333;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(55, 80, 221, 0.2);
+  }
+  h2 {
+    color: #3750DD;
+    border-bottom: 2px solid #3750DD;
+    padding-bottom: 6px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  li {
+    background: #e3e9ff;
+    margin: 6px 0;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    box-shadow: 1px 1px 3px rgba(55, 80, 221, 0.1);
+  }
+  .status {
+    margin-top: 20px;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  .cached {
+    background-color: #3750DD; /* синий фон */
+  }
+  .updated {
+    background-color: #4CAF50; /* зелёный фон */
+  }
+</style>
+
+<h2>🚀 Из базы данных:</h2>
+<ul>
+  {% for contractor in contractors_from_db %}
+    <li>{{ contractor.name }}</li>
+  {% empty %}
+    <li>Нет данных в базе</li>
+  {% endfor %}
+</ul>
+
+<h2>💾 Статус обновления:</h2>
+<div class="status {% if was_cached %}cached{% else %}updated{% endif %}">
+  {% if was_cached %}
+    был кэш
+  {% else %}
+    обновлён
+  {% endif %}
+</div>
+
+<h2>💾 Из кэша:</h2>
+<ul>
+  {% for contractor in contractors_from_cache %}
+    <li>{{ contractor.name }}</li>
+  {% empty %}
+    <li>Нет данных в кэше</li>
+  {% endfor %}
+</ul>
