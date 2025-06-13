@@ -21,6 +21,7 @@ __pycache__/
 # 💻 Конфигурации IDE и редакторов
 .vscode/
 .idea/
+idea/
 
 *.iml
 *.sublime-project
